@@ -24,6 +24,7 @@ public class Bunker : MonoBehaviour
     public int numBooms, ammunition;
     private int burst = 3;
     private int ModeShoot;
+    private float pushForce = 5f;
 
     //Audio
     public AudioClip audioBullet;
@@ -78,7 +79,11 @@ public class Bunker : MonoBehaviour
             }*/
 
             timeBurst -= Time.deltaTime;
-            
+
+            float horizontal_input = Input.GetAxis("Horizontal");
+
+            this.GetComponent<Rigidbody>().AddForce(horizontal_input*pushForce, 0f, 0f);
+
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
                 if(ModeShoot >= 2)
